@@ -20,6 +20,7 @@ def init_log(log_dir, name):
     logger = logging.getLogger(name)
     logger.addHandler(sh)
     logger.addHandler(fh)
+    logger.setLevel(logging.DEBUG)
 
 def get_logger(name):
     return logging.getLogger(name)

@@ -7,9 +7,6 @@ import tornado.ioloop
 import tornado.web
 
 from wechatHandler import  *
-import config
-
-
 
 def make_app():
     setting = {
