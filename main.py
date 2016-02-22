@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 __author__ = 'eureka'
 
+import sys
+reload(sys)
+sys.setdefaultencoding("utf8")
+
 import os, os.path
 
 import tornado.ioloop

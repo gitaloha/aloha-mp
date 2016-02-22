@@ -28,7 +28,7 @@ class BaseWechatHandler(tornado.web.RequestHandler):
 
 
 class RootHandler(BaseWechatHandler):
-    def get(self, *args, **kwargs):
+    def post(self, *args, **kwargs):
         print self.get_argument("signature"), self.get_argument("timestamp"), self.get_argument("nonce")
         if self._wechat.check_signature(self.get_argument("signature"), self.get_argument("timestamp"), self.get_argument("nonce")):
             logger.debug("accept")
@@ -39,11 +39,16 @@ class RootHandler(BaseWechatHandler):
             return
 
         try:
-            self._wechat.parse_data(self.request.body)
-        except ParseError:
-            print 'Invalid Body Text'
+	    logger.debug(self.request.body)
+            self._wechat.parse_data(self.request.body, self.get_argument("signature"), self.get_argument("timestamp"), self.get_argument("nonce") )
+        except ParseError,e:
+            logger.error('Invalid Body Text'+str(e))
+	    logger.error(traceback.format_exc())
+            return 
 
         msg = self._wechat.message
+	logger.debug(msg.source)
+	logger.debug(msg.target)
         xml = ""
         if isinstance(msg, TextMessage):
             content = msg.content
