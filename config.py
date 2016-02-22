@@ -15,7 +15,6 @@ def cfg_get(cfg_key):
             line = line.strip()
             ls = line.split("=")
             if ls[0].strip() == cfg_key:
-		print ls[0],ls[1]
                 return ls[1].strip()
     except Exception:
         traceback.print_exc()
