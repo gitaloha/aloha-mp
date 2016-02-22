@@ -15,6 +15,7 @@ def cfg_get(cfg_key):
             line = line.strip()
             ls = line.split("=")
             if ls[0].strip() == cfg_key:
+		print ls[0],ls[1]
                 return ls[1].strip()
     except Exception:
         traceback.print_exc()
@@ -22,7 +23,7 @@ def cfg_get(cfg_key):
 
 
 def init_logger():
-    plogger.init_log(cfg_get("log_dir"), "aloha")
+    plogger.init_log(cfg_get("log_dir"), "root")
 
 def get_logger():
-    return plogger("aloha")
+    return plogger("root")

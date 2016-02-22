@@ -7,7 +7,7 @@ import tornado.ioloop
 import tornado.web
 
 from wechatHandler import  *
-from config import *
+import config
 
 
 
@@ -20,7 +20,7 @@ def make_app():
         "template_path": "template"
     }
     application = tornado.web.Application([
-        (r"/", RootHandler),
+        (r"/mp", RootHandler),
     ], **setting)
     return application
 
